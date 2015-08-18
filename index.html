@@ -18,13 +18,23 @@
     .orangeChar {
       color: orange;
     }
+    .blueBox {
+      width: 400px;
+      height: 400px;
+      display: inline-block;
+      background-color: blue;
+      text-align: center;
+    }
   </style>
   <h1>Ping Pong Score Keeper</h1>
   <div ng-controller='pingPongBingBong'>
-    <div>
+    <div class='blueBox'>
+      <h2> Player 1</h2>
     </div>
-    <div>
+    <div class='blueBox'>
+      <h2> Player 2</h2>
     </div>
+    <input type='button' value='reset' style='display: block;'>
   </div>
   <h1>Intro to Events</h1>
   <div ng-controller='eventAction'>
