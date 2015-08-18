@@ -1,0 +1,172 @@
+<html ng-app='firstApp'>
+  <head>
+      <script src='https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.3/angular.js'></script>
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+      <script src='app.js'></script>
+  </head>
+<body>
+  <style>
+    .highlight {
+      background-color: yellow;
+    }
+    .redChar {
+      color: red;
+    }
+    .greenChar {
+      color: green;
+    }
+    .orangeChar {
+      color: orange;
+    }
+  </style>
+  <h1>Ping Pong Score Keeper</h1>
+  <div ng-controller='pingPongBingBong'>
+    <div>
+    </div>
+    <div>
+    </div>
+  </div>
+  <h1>Intro to Events</h1>
+  <div ng-controller='eventAction'>
+    <h2>Word Reverse</h2>
+    <input type='text' ng-model='word'>
+    <p>Your word is: {{word}}</p>
+    <input type='button' value='Reverse!' ng-click="reverseWord()">
+    <h2>Random Number</h2>
+    <h3>The number is: {{number}}</h3>
+    <button ng-click="pickRandomNumber()">Pick Random Number</button>
+  </div>
+  <div ng-controller='CamShop'>
+    <h1>Camera Shop</h1>
+    <select ng-model='search.$'>
+      <option value='camera.rating'>Rating</option>
+      <option value='camera.price'>Price</option>
+    </select>
+    <ul>
+      <li ng-repeat='camera in cameras | filter:search' style='list-style-type: none;'>
+        <b>{{camera.title}}</b>
+        <br>
+        <div ng-hide="camera.onSale == true">
+          Price: {{camera.price}}
+        </div>
+        <div ng-show="camera.onSale == true" class='orangeChar'>
+          Price: {{camera.price}} ON SALE!!!
+        </div>
+        Rating: {{camera.rating}}
+        <br>
+        <img ng-src="{{camera.image}}" width="150" height='100'>
+      </li>
+    </ul>
+  </div>
+  <h1>ng-class</h1>
+  <div ng-class="{highlight: 4 + 4 == 8}"> 4 + 4 = 8</div>
+  <div ng-class="{highlight: 4 + 4 == 10}">4 + 4 = 10</div>
+  <h1>ng-show/hide & ng-class</h1>
+  <h3>Password Valdator</h3>
+  <input type='password' ng-model='password'>
+  <p class='redChar' ng-class='{greenChar: password.length > 5}'>Your password is {{password.length || 0}} characters long</p>
+  <p ng-show='password.length < 6'>Password is invalid!</p>
+  <input ng-show='password.length > 5' type='button' value='Sign Up!'>
+  <h3>Expressions</h3>
+  <div ng-show="3 + 4 == 5">
+  3 + 4 isn't 5, don't show
+  </div>
+  <div ng-show="3 + 4 == 7">
+    3 + 4 is 7, do show
+  </div>
+  <div ng-hide="3 + 4 == 5">
+      3 + 4 isn't 5, don't hide
+  </div>
+  <div ng-hide="3 + 4 == 7">
+    3 + 4 is 7, do hide
+  </div>
+  <h1>Built in Directives Section</h1>
+  <div ng-controller='BuildInD'>
+    <h3>ng-repeat</h3>
+    <p>names</p>
+    <ul>
+      <li ng-repeat='name in names'>
+        {{name}}
+      </li>
+    </ul>
+    <p>symbols</p>
+    <ul>
+      <li ng-repeat='symbol in symbols'>
+        {{symbol}}
+      </li>
+    </ul>
+    <p>Dealing with Duplicates</p>
+    <ul>
+      <li ng-repeat='numb in numbers track by $index'>
+        {{numb}}
+      </li>
+    </ul>
+    <p>Itterating an Objects Attributes</p>
+    <ul>
+      <p>Display key</p>
+      <li ng-repeat='(key, data) in games'>
+        {{key}}
+      </li>
+      <p>Display value</p>
+      <li ng-repeat='(key, data) in games'>
+        {{data}}
+      </li>
+    </ul>
+  </div>
+  <h1>Controller Section</h1>
+  <h3>First Controller Section:</h3>
+  <div ng-controller='MyFirstController'>
+    <p>My name is: {{ name }}</p>
+    <input ng-model='name' type='text' placeholder="What is your name?">
+  </div>
+  <h3>Second Controller Section:</h3>
+  <div ng-controller='ExercisesController'>
+    <p>My favorite color is: {{ FavColor }}</p>
+    <p style="display: inline-block">There are <h3 style="display: inline-block"> {{ secondsInACentury | number : fractionSize}} </h3> seconds in a century</p>
+    <p>The current date is: {{ rightNow | date }}
+  </div>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <h1>Context run in $rootScope</h1>
+  <p>{{nothingWillShowHere}}</p>
+  <h1>Super Usefull Tip Calculator</h1>
+  <p style='display: inline-block'>How much did your meal cost?</p>
+  <input type='number' ng-model='bill'>
+  <p>How much did you want to tip?</p>
+  <select ng-model='percent'>
+      <option value='0.10'>10%</option>
+      <option value='0.20'>20%</option>
+      <option value='0.30'>30%</option>
+  </select>
+  <h3>Subtotal: {{bill | currency}}</h3>
+  <h3>Tip: {{bill * percent | currency}}</h3>
+  <h1>Pi Action!</h1>
+  <p style='display: inline-block;'>How many digits of pi do you want?</p>
+  <select ng-model='piNumber'>
+    <option value='1' selected>1</option>
+    <option value='2'>2</option>
+    <option value='3'>3</option>
+    <option value='4'>4</option>
+    <option value='5'>5</option>
+    <option value='6'>6</option>
+    <option value='7'>7</option>
+  </select>
+  <p>Here you go, the first {{piNumber}} <ng-pluralize count=piNumber when="{'1': 'digit', '2': 'digits', 'other': 'digits'}"></ng-pluralize> of pi!</p>
+
+  <p>{{3.14159265359 | number: piNumber}}
+  <h1>Please say something</h1>
+  <input id='name-input' type='text' placeholder="I'm giving up on you" ng-model='say'></input>
+  <!-- <input id='name-input' oninput='changeEvent()' type='text' placeholder="What is your name?" ng-model='name'></input> -->
+  <p>Yelling(caps): {{say | uppercase}}</p>
+  <p>Whispering(lowercase): {{say | lowercase}}</p>
+  <h1>{{3.14959265359 | currency:"&euro;"}}</h1>
+  <h1>Rounding</h1>
+  <p>{{3.14159265359 | number:3}}</p>
+  <p>{{3.14159265359 | number:6}}</p>
+  <p>{{3.14159265359 | number:1}}</p>
+  <!-- <script src='rawjs.js'></script> -->
+</body>
+</html>
