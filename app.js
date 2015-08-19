@@ -81,3 +81,29 @@ app.controller('pingPongBingBong', function ($scope) {
     $scope.scoreOne = 0;
   }
 });
+
+app.controller('contactApp', function ($scope) {
+  $scope.allContacts = [{
+    name: 'Harry Potter',
+    email: 'hp@hogwarts.com',
+    phone: '123-wizards-rule'
+  },
+  {
+    name: 'Ron Weasle',
+    email: 'rw@hogwarts.com',
+    phone: '321-wizards-rule'
+  },
+  {
+    name: 'Haggrid',
+    email: 'bigH@hogwarts.com',
+    phone: '999-wizards-rule'
+  }];
+  // $scope.allContacts = [];
+  $scope.addContact = function (name, email, phone) {
+    $scope.allContacts.push({
+      name: name,
+      email: email,
+      phone: phone
+    });
+  }
+})

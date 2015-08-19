@@ -28,7 +28,32 @@
     }
   </style>
   <h1>Contacts App</h1>
-  <label>
+  <div ng-controller='contactApp'>
+    <label>Name:</label>
+    <input type='text' ng-model='name'>
+    <label>Email:</label>
+    <input type='text' ng-model='email'>
+    <label>Phone:</label>
+    <input type='text' ng-model='phone'>
+    <input type='button' value='Add Contact' ng-click='addContact(name, email, phone)'>
+    <br>
+    <label>Search</label>
+    <input type='text' placeholder='Search For Someone' ng-model='searchPeople'>
+    <table>
+      <thead>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Phone</th>
+      </thead>
+      <tbody>
+        <tr ng-repeat='contact in allContacts | filter:searchPeople'>
+          <td>{{contact.name}}</td>
+          <td>{{contact.email}}</td>
+          <td>{{contact.phone}}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
   <h1>Ping Pong Score Keeper</h1>
   <div ng-controller='pingPongBingBong'>
     <div class='blueBox' ng-click='scoreTracker("p1")'>
@@ -39,7 +64,9 @@
       <h2> Player 2</h2>
       <p>{{scoreTwo || 0}}</p>
     </div>
-    <input type='button' value='reset' style='display: block;' ng-click='resetBoard()'>
+    <br>
+    <br>
+    <input type='button' value='Reset Board!' style='display: block;' ng-click='resetBoard()'>
   </div>
   <h1>Intro to Events</h1>
   <div ng-controller='eventAction'>
