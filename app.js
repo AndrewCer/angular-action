@@ -58,5 +58,26 @@ app.controller('eventAction', function ($scope) {
 });
 
 app.controller('pingPongBingBong', function ($scope) {
-  
+  $scope.scoreOne = 0;
+  $scope.scoreTwo = 0;
+  $scope.scoreTracker = function (input) {
+    if (input === 'p1') {
+      if ($scope.scoreTwo < 11) {
+        if ($scope.scoreOne < 11) {
+          $scope.scoreOne = $scope.scoreOne + 1
+        }
+      }
+    }
+    else {
+      if ($scope.scoreOne < 11) {
+        if ($scope.scoreTwo < 11) {
+          $scope.scoreTwo = $scope.scoreTwo + 1
+        }
+      }
+    }
+  }
+  $scope.resetBoard = function () {
+    $scope.scoreTwo = 0;
+    $scope.scoreOne = 0;
+  }
 });

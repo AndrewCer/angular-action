@@ -24,17 +24,22 @@
       display: inline-block;
       background-color: blue;
       text-align: center;
+      color: white;
     }
   </style>
+  <h1>Contacts App</h1>
+  <label>
   <h1>Ping Pong Score Keeper</h1>
   <div ng-controller='pingPongBingBong'>
-    <div class='blueBox'>
+    <div class='blueBox' ng-click='scoreTracker("p1")'>
       <h2> Player 1</h2>
+      <p>{{scoreOne || 0}}</p>
     </div>
-    <div class='blueBox'>
+    <div class='blueBox' ng-click='scoreTracker("p2")'>
       <h2> Player 2</h2>
+      <p>{{scoreTwo || 0}}</p>
     </div>
-    <input type='button' value='reset' style='display: block;'>
+    <input type='button' value='reset' style='display: block;' ng-click='resetBoard()'>
   </div>
   <h1>Intro to Events</h1>
   <div ng-controller='eventAction'>

@@ -5,5 +5,5 @@ var nInput = document.getElementById('name-input');
 var nameInput = document.getElementById('name')
 
 var changeEvent = function () {
-  nameInput.innerHTML = nInput.value; 
+  nameInput.innerHTML = nInput.value 
 }
